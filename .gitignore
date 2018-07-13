@@ -1,0 +1,7 @@
+.idea
+composer.lock
+/vendor
+/bin
+!/bin/console
+/tests/Testapp/cache
+/tests/Testapp/logs

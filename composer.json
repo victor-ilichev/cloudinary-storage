@@ -1,0 +1,46 @@
+{
+  "name": "victor/file-storage-bundle",
+  "type": "symfony-bundle",
+  "description": "file storage bundle",
+  "authors": [
+    {
+      "name": "Victor Ilichov",
+      "email": "victorlange84@gmail.com"
+    }
+  ],
+  "autoload": {"psr-4": {"Victor\\FileStorageBundle\\": ["src"]}},
+  "autoload-dev": {"psr-4": {"Victor\\FileStorageBundle\\": "tests"}},
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "scripts": {
+    "test": "bin/phpunit"
+  },
+  "require": {
+    "php": ">=7.1",
+    "symfony/framework-bundle": "@stable",
+    "symfony/form": "@stable",
+    "symfony/validator": "@stable",
+    "sensio/framework-extra-bundle":"@stable",
+    "symfony/twig-bridge": "@stable",
+    "symfony/assetic-bundle": "@stable",
+    "friendsofsymfony/jsrouting-bundle": "@stable"
+  },
+  "require-dev": {
+    "doctrine/orm": "2.4.*",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/doctrine-cache-bundle": "^1.2",
+    "phpunit/phpunit": "~5@stable",
+    "codeception/specify": "@stable",
+    "codeception/verify": "@stable",
+    "twig/twig": "~1@stable",
+    "twig/extensions": "~1",
+    "symfony/event-dispatcher": "~2",
+    "symfony/security-bundle": "~2",
+    "symfony/twig-bundle": "~2",
+    "symfony/browser-kit": "~2",
+    "symfony/css-selector": "2.8.*",
+    "sonata-project/admin-bundle": "2.3.*",
+    "sonata-project/doctrine-orm-admin-bundle": "2.3.*"
+  }
+}

@@ -1,0 +1,11 @@
+services:
+    file_storage:
+        class: Victor\FileStorageBundle\FileStorage\FileStorage
+        arguments:
+            - 'one'
+            - 'two'
+
+    cloudinary_file_storage:
+        class: Victor\FileStorageBundle\Cloudinary\Cloudinary
+        tags:
+            - { name: file_storage }

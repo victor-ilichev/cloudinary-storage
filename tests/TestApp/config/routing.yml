@@ -1,0 +1,22 @@
+show:
+    path: /
+    defaults: { _controller: storage.test_controller:showAction }
+upload:
+    path: /upload
+    defaults: { _controller: storage.test_controller:uploadAction }
+
+widget:
+    resource: '@VictorFileStorageBundle/Resources/config/routing.yml'
+    prefix: /widget
+
+admin_area:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

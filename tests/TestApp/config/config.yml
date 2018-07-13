@@ -1,0 +1,97 @@
+services:
+    storage.test_controller:
+        class: Victor\FileStorageBundle\TestApp\Controller\TestController
+        calls:
+            - ['setContainer', ["@service_container"]]
+
+    admin.category:
+        class: Victor\FileStorageBundle\TestApp\Admin\BlogPostAdmin
+        arguments: [~, Pegas\EditorBundle\Testapp\Entity\BlogPost, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: BlogPost }
+
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    test: {password: test}
+    firewalls:
+        main:
+          anonymous: true
+
+framework:
+    secret: ''
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form: ~
+    templating:
+        engines: ['twig']
+    validation: { enable_annotations: true }
+    session:
+        handler_id:  ~
+        storage_id: session.storage.filesystem
+#        storage_id: session.storage.mock_file
+    test: ~
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:      pdo_mysql
+                host:        localhost
+                user:        root
+                password:    crypto
+                dbname:      editor_bundle_test
+
+
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: false
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+sonata_admin:
+    assets:
+        javascripts:
+            - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
+            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
+            - bundles/sonatacore/vendor/moment/min/moment.min.js
+            - bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
+            - bundles/sonataadmin/jquery/jquery.form.js
+            - bundles/sonataadmin/jquery/jquery.confirmExit.js
+            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
+            - bundles/sonataadmin/vendor/select2/select2.min.js
+            - bundles/sonataadmin/App.js
+            - bundles/sonataadmin/Admin.js
+            - bundles/pegaseditor/js/editor.js
+
+file_storage:
+    default_storage: Cloudinary
+    storages:
+        Cloudinary:
+            storage_name: Cloudinary
+            key: sfvklhnsof769jn
+            url: http://sfgsg/sfgsg
+
+twig:
+    form_themes:
+        - '@PegasEditor/form/form_bootstrap_layout.html.twig'

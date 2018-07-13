@@ -1,0 +1,4 @@
+preview:
+    path: /preview
+#    methods: POST
+    defaults: { _controller: PegasEditorBundle:Widget:preview }
