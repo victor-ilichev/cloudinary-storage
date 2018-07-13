@@ -22,7 +22,7 @@ class StoragePass implements CompilerPassInterface
             foreach ($tags as $attributes) {
                 $definition->addMethodCall(
                     'setStorage',
-                    array(new Reference($id))
+                    [new Reference($id)]
                 );
             }
         }

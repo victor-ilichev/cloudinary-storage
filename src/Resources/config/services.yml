@@ -8,4 +8,4 @@ services:
     cloudinary_file_storage:
         class: Victor\FileStorageBundle\Cloudinary\Cloudinary
         tags:
-            - { name: file_storage }
+            - { name: file_storage, alias: routing_widget }

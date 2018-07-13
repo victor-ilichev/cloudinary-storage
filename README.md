@@ -1,22 +1,11 @@
-зарегистрируйте  dbal type  editor_data
-config.yml
-doctrine:
-    dbal:
-        mapping:
-            editor_data: Pegas\EditorBundle\DBAL\Type\EditorData
+для начала надо скачать Ckeditor
+php bin/console ckeditor:install
 
-добавьте тему для формы
+затем установить css и js
+php bin/console assets:install web
 
-form:
-    theme:
-        - @PegasEditorBundle:form:bootstrap3_theme.html.twig
+создать пользователя админки
+php bin/console fos:user:create admin email@email.ru 123456
 
-
- на страницу с формой подключите js и css
-    editor.js
-    editor.css
-
-используйте EditorType::class для поля формы
-
-WIDGETS:
-    wearher
+дать созданному пользователю права администратора
+php bin/console fos:user:promote admin ROLE_SUPER_ADMIN    
