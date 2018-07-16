@@ -22,28 +22,19 @@ class VictorFileStorageExtension extends  Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if (empty($config['default_storage'])) {
-            $keys = array_keys($config['storages']);
-            $config['default_storage'] = reset($keys);
-        }
-
-        $currentStorage = $config['storages'][$config['default_storage']];
-
-        $definition = $container->getDefinition('file_storage');
-        $definition->replaceArgument(0, $currentStorage['key']);
-        $definition->replaceArgument(0, $currentStorage['url']);
-
-        //$this->addTemplateLayoutToRender($container, $config);
-
+        $definition = $container->getDefinition('cloudinary_storage_service');
+        $guzzleClient = $container->getDefinition('guzzle.client');
+        $guzzleClient->replaceArgument('base_uri', $config['url']);
+        $definition->replaceArgument(0, $config['storage_name']);
+        $definition->replaceArgument(1, $config['key']);
+        $definition->replaceArgument(2, $config['secret']);
+        $definition->replaceArgument(3, $config['url']);
+        $definition->replaceArgument(4, $guzzleClient);
     }
 
-    private function addTemplateLayoutToRender(ContainerBuilder $containerBuilder, $layout)
-    {
-        //$containerBuilder->getDefinition('widget.editor_configuration_preview')->replaceArgument(0, $layout['preview']);
-    }
 
     public function getAlias()
     {
-        return 'file_storage';
+        return 'cloudinary_storage';
     }
 }

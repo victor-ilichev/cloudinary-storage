@@ -11,20 +11,9 @@ class StoragePass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $definition = $container->findDefinition(
-            'file_storage'
-        );
-        $taggedServices = $container->findTaggedServiceIds(
-            'file_storage'
-        );
+//        $definition = $container->findDefinition(
+//            'cloudinary_storage'
+//        );
 
-        foreach ($taggedServices as $id => $tags) {
-            foreach ($tags as $attributes) {
-                $definition->addMethodCall(
-                    'setStorage',
-                    [new Reference($id)]
-                );
-            }
-        }
     }
 }

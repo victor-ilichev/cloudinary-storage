@@ -17,25 +17,18 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('file_storage', 'array');
+        $rootNode = $treeBuilder->root('cloudinary_storage', 'array');
 
         $rootNode
             ->children()
-                ->scalarNode('default_storage')
+                ->scalarNode('storage_name')
                     ->end()
-                ->arrayNode('storages')
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('storage_name')
-                                ->end()
-                            ->scalarNode('key')
-                                ->end()
-                            ->scalarNode('url')
-                                ->end()
-                        ->end()
+                ->scalarNode('key')
                     ->end()
-                ->end()
+                ->scalarNode('url')
+                    ->end()
+                ->scalarNode('secret')
+                    ->end()
             ->end()
         ;
 

@@ -84,13 +84,11 @@ sonata_admin:
             - bundles/sonataadmin/Admin.js
             - bundles/pegaseditor/js/editor.js
 
-file_storage:
-    default_storage: Cloudinary
-    storages:
-        Cloudinary:
-            storage_name: Cloudinary
-            key: sfvklhnsof769jn
-            url: http://sfgsg/sfgsg
+cloudinary_storage:
+    storage_name: Cloudinary
+    key: sfvklhnsof769jn
+    secret: sfvksfvklhnsof769jn769jn
+    url: http://sfgsg/sfgsg
 
 twig:
     form_themes:

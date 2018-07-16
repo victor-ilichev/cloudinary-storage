@@ -28,6 +28,7 @@ class TestController extends Controller
      */
     public function showAction(Request $request)
     {
+        $response = $this->get('cloudinary_storage_service')->get($request);
 //        $form = $this->createForm(EditorType::class);
 //
 //        $editorPresenter = $this->get('widget.widget_presenter');
