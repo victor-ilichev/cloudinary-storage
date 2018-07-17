@@ -1,6 +1,9 @@
 show:
     path: /
     defaults: { _controller: storage.test_controller:showAction }
+show.image:
+    path: /image/{id}
+    defaults: { _controller: storage.test_controller:showImageAction }
 upload:
     path: /upload
     defaults: { _controller: storage.test_controller:uploadAction }
