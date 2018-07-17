@@ -11,3 +11,19 @@
         <input type="submit" name="submit" value="submit">
     </form>
 </div>
+<style>
+    ul > li > a > img {
+        width: 300px;
+    }
+</style>
+<ul>
+    {% for item in items %}
+        <li>
+            <a href="{{ path('show.image', {'id': item.public_id}) }}">
+                <img src="{{ item.url }}">
+                {#{{ dump(item) }}#}
+            </a>
+        </li>
+    {% endfor %}
+
+</ul>

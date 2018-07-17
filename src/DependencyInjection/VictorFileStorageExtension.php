@@ -22,14 +22,18 @@ class VictorFileStorageExtension extends  Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
+        $certsLocator = new FileLocator(__DIR__.'/../Resources/certs');
+        $r = $certsLocator->locate('cacert.pem');
         $definition = $container->getDefinition('cloudinary_storage_service');
         $guzzleClient = $container->getDefinition('guzzle.client');
+
         $guzzleClient->replaceArgument('base_uri', $config['url']);
         $definition->replaceArgument(0, $config['storage_name']);
         $definition->replaceArgument(1, $config['key']);
         $definition->replaceArgument(2, $config['secret']);
         $definition->replaceArgument(3, $config['url']);
-        $definition->replaceArgument(4, $guzzleClient);
+        $definition->replaceArgument(4, $r);
+        $definition->replaceArgument(5, $guzzleClient);
     }
 
 

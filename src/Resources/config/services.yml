@@ -12,5 +12,6 @@ services:
             - 'three'
             - 'four'
             - 'five'
+            - 'client'
         tags:
             - { name: file_storage, alias: routing_widget }
