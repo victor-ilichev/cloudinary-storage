@@ -5,7 +5,6 @@
  */
 namespace Victor\FileStorageBundle\Cloudinary;
 
-use Cloudinary\Api;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
