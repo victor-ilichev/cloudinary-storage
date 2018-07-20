@@ -27,7 +27,7 @@ class VictorFileStorageExtension extends  Extension
         $definition = $container->getDefinition('cloudinary_storage_service');
         $guzzleClient = $container->getDefinition('guzzle.client');
 
-        $guzzleClient->replaceArgument('base_uri', $config['url']);
+        //$guzzleClient->replaceArgument('base_uri', $config['url']);
         $definition->replaceArgument(0, $config['storage_name']);
         $definition->replaceArgument(1, $config['key']);
         $definition->replaceArgument(2, $config['secret']);

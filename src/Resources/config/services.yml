@@ -14,7 +14,7 @@ services:
             - 'five'
             - 'client'
         tags:
-            - { name: file_storage, alias: routing_widget }
+            - { name: file_storage, alias: cloudinary_storage_service }
 
     cloudinary.cloudinary_form_extension:
         class: Victor\FileStorageBundle\Form\CloudinaryFileExtension

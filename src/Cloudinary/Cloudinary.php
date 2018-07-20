@@ -83,10 +83,8 @@ class Cloudinary implements Storage
         return $result;
     }
 
-    public function upload(Request $request): array
+    public function upload(UploadedFile $file): array
     {
-        /** @var UploadedFile $picture */
-        $picture = $request->files->get('picture');
         $timestamp = time();
         $signature = sha1('timestamp=' . $timestamp . $this->secret);
 
@@ -110,8 +108,8 @@ class Cloudinary implements Storage
                         ],
                         [
                             'name' => 'file',
-                            'contents' => fopen($picture->getRealPath(), 'r'),
-                            'filename' => $picture->getClientOriginalName(),
+                            'contents' => fopen($file->getRealPath(), 'r'),
+                            'filename' => $file->getClientOriginalName(),
                         ],
                     ]
                 ]
