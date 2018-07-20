@@ -66,9 +66,6 @@ class Cloudinary implements Storage
 
     public function getImage(string $id): array
     {
-//        $api = new Api();
-//        $res = $api->resource($id);
-
         $response = $this->client->request(
             'GET',
             'https://api.cloudinary.com/v1_1/mt-images/resources/image/upload/' . $id,

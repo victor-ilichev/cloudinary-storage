@@ -93,3 +93,7 @@ cloudinary_storage:
 twig:
     form_themes:
         - '@PegasEditor/form/form_bootstrap_layout.html.twig'
+        - '@SonataFormatter/Form/formatter.html.twig'
+        - 'form/fields.html.twig'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
