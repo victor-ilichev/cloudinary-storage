@@ -23,7 +23,11 @@ class CloudinaryFileType extends Type
         try {
             $cloudinaryData = unserialize($cloudinaryData);
 
-            if (!$cloudinaryData instanceof CloudinaryData) {
+            if ($cloudinaryData instanceof CloudinaryData) {
+                return $cloudinaryData;
+            }
+
+            if (is_array($cloudinaryData)) {
                 $cloudinaryData =
                     (new CloudinaryData())
                         ->setId($cloudinaryData['public_id'])
