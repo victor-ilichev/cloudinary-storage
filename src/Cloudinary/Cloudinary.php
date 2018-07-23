@@ -5,14 +5,13 @@
  */
 namespace Victor\FileStorageBundle\Cloudinary;
 
-use Exception\JsonParseException;
-use Exception\UploadedFileNotFoundException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\Request;
+use Victor\FileStorageBundle\Exception\JsonParseException;
+use Victor\FileStorageBundle\Exception\UploadedFileNotFoundException;
 
 /**
  * Class Cloudinary
@@ -101,9 +100,9 @@ class Cloudinary
             $result = new Result(Result::SUCCESS_CODE, $data);
 
         } catch (GuzzleException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         } catch (JsonParseException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         }
 
         return $result;
@@ -154,14 +153,14 @@ class Cloudinary
                 throw new JsonParseException('', json_last_error());
             }
 
-            $result = new Result(Result::SUCCESS_CODE, $data);
+            $result = new Result(Result::SUCCESS_CODE, 'sucess', $data);
 
         } catch (GuzzleException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         } catch (JsonParseException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         } catch (UploadedFileNotFoundException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         }
 
         return $result;

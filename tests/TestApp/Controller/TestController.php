@@ -52,7 +52,7 @@ class TestController extends Controller
      */
     public function uploadAction(Request $request)
     {
-        $file = $request->files->get($this->get('uploaded_file_name'));
+        $file = $request->files->get($this->getParameter('uploaded_file_name'));
         $this->get('cloudinary_storage_service')->upload($file);
 
         return $this->redirectToRoute('show');

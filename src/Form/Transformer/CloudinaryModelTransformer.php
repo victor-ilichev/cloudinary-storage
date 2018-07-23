@@ -83,10 +83,13 @@ class CloudinaryModelTransformer implements DataTransformerInterface
 
         if (is_a($value, UploadedFile::class)) {
             $result = $this->cloudinary->upload($value);
-            $cloudinaryData
-                ->setId($result['public_id'])
-                ->setUrl($result['secure_url'])
-            ;
+
+            if ($result->isSuccess()) {
+                $cloudinaryData
+                    ->setId($result->getData()['public_id'])
+                    ->setUrl($result->getData()['secure_url'])
+                ;
+            }
         }
 
         return $cloudinaryData;

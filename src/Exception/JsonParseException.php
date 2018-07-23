@@ -6,7 +6,7 @@
  * Time: 8:47
  */
 
-namespace Exception;
+namespace Victor\FileStorageBundle\Exception;
 
 use Throwable;
 

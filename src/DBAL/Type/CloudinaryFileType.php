@@ -2,6 +2,7 @@
 
 namespace Victor\FileStorageBundle\DBAL\Type;
 
+use Victor\FileStorageBundle\Exception\FileStoragrException;
 use Victor\FileStorageBundle\Model\CloudinaryData;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
@@ -35,6 +36,7 @@ class CloudinaryFileType extends Type
                 ;
             }
 
+            throw new FileStoragrException('CloudinaryData does not recognized.');
         } catch (\Exception $e) {
             $message = $e->getMessage();
             $cloudinaryData = new CloudinaryData();
