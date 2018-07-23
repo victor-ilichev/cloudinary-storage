@@ -31,7 +31,8 @@ class VictorFileStorageExtension extends  Extension
         $cloudinaryConfig->addMethodCall('set', ['secret', $config['secret']]);
         $cloudinaryConfig->addMethodCall('set', ['url', $config['url'] . $config['storage_name']]);
         $cloudinaryConfig->addMethodCall('set', ['cacert.pem', $cacertPemPath]);
-        $cloudinaryConfig->addMethodCall('set', ['uploaded_file_name', $config['uploaded_file_name']]);
+
+        $container->setParameter('uploaded_file_name', $config['uploaded_file_name']);
     }
 
 

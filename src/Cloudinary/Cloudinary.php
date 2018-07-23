@@ -10,6 +10,7 @@ use Exception\UploadedFileNotFoundException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -108,13 +109,12 @@ class Cloudinary
         return $result;
     }
 
-    public function upload(FileBag $fileBag): Result
+    public function upload(UploadedFile $file): Result
     {
         $timestamp = time();
         $signature = sha1('timestamp=' . $timestamp . $this->config->get('secret'));
 
         try {
-            $file = $fileBag->get($this->config->get('uploaded_file_name'));
 
             if (!is_a($file, File::class)) {
                 throw new UploadedFileNotFoundException();
