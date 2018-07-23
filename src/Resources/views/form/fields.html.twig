@@ -2,7 +2,7 @@
     <div class="cloudinary_file_widget">
         {% if image_url is not empty %}
             {% set value = image_url %}
-            <img src="{{ value }}" />
+            <img width="300" src="{{ value }}" />
         {% endif %}
         {% set type = type|default('file') %}
         {{ block('form_widget_simple') }}
