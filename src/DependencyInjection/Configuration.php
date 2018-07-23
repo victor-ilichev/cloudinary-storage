@@ -29,6 +29,8 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->scalarNode('secret')
                     ->end()
+                ->scalarNode('uploaded_file_name')
+                    ->end()
             ->end()
         ;
 

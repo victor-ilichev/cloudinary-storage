@@ -8,13 +8,14 @@
 
 namespace Victor\FileStorageBundle\FileStorage;
 
+use Cloudinary\Result;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 interface Storage
 {
     public function get(Request $request): array;
-    public function upload(UploadedFile $file): array;
+    public function upload(UploadedFile $file): Result;
     public function update(Request $request): array;
     public function delete(Request $request): array;
 }

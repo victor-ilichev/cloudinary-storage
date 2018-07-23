@@ -4,15 +4,14 @@ services:
         arguments: [{base_uri: '', headers: {'user-agent': 'guzzle'}}]
         public: false
 
+    cloudinary_storage_config:
+        class: Victor\FileStorageBundle\Cloudinary\Config
+
     cloudinary_storage_service:
         class: Victor\FileStorageBundle\Cloudinary\Cloudinary
         arguments:
-            - 'one'
-            - 'two'
-            - 'three'
-            - 'four'
-            - 'five'
-            - 'client'
+            - '@cloudinary_storage_config'
+            - '@guzzle.client'
         tags:
             - { name: file_storage, alias: cloudinary_storage_service }
 

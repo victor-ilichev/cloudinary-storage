@@ -5,118 +5,164 @@
  */
 namespace Victor\FileStorageBundle\Cloudinary;
 
+use Exception\JsonParseException;
+use Exception\UploadedFileNotFoundException;
 use GuzzleHttp\Client;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use GuzzleHttp\Exception\GuzzleException;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\Request;
-use Victor\FileStorageBundle\FileStorage\Storage;
 
 /**
  * Class Cloudinary
  */
-class Cloudinary implements Storage
+class Cloudinary
 {
-    private $cloudName;
-    private $key;
-    private $secret;
-    private $apiUrl;
     /**
      * @var Client
      */
     private $client;
-    private $certPath;
+    /**
+     * @var Config
+     */
+    private $config;
 
     /**
      * Cloudinary constructor.
      *
-     * @param $cloudName
-     * @param $key
-     * @param $secret
-     * @param $apiUrl
-     * @param $certPath
+     * @param Config $config
      * @param Client $client
      */
-    public function __construct($cloudName, $key, $secret, $apiUrl, $certPath, Client $client)
+    public function __construct(Config $config, Client $client)
     {
-        $this->cloudName = $cloudName;
-        $this->key = $key;
-        $this->secret = $secret;
-        $this->apiUrl = $apiUrl;
+        $this->config = $config;
         $this->client = $client;
-        $this->certPath = $certPath;
     }
 
-    public function get(Request $request): array
+    public function get(): Result
     {
-        $response = $this->client->request(
-            'GET',
-            'https://api.cloudinary.com/v1_1/mt-images/resources/image',
-            [
-                'verify' => $this->certPath,
-                'auth' => [
-                    $this->key,
-                    $this->secret
-                ]
-            ]
-        );
-
-        $result = json_decode((string) $response->getBody(), true);
-
-        return $result;
-    }
-
-    public function getImage(string $id): array
-    {
-        $response = $this->client->request(
-            'GET',
-            'https://api.cloudinary.com/v1_1/mt-images/resources/image/upload/' . $id,
-            [
-                'verify' => $this->certPath,
-                'auth' => [
-                    $this->key,
-                    $this->secret
-                ]
-            ]
-        );
-
-        $result = json_decode((string) $response->getBody(), true);
-
-        return $result;
-    }
-
-    public function upload(UploadedFile $file): array
-    {
-        $timestamp = time();
-        $signature = sha1('timestamp=' . $timestamp . $this->secret);
-
-        $response =
-            $this->client->request(
-                'POST',
-                'https://api.cloudinary.com/v1_1/mt-images/image/upload',
+        try {
+            $response = $this->client->request(
+                'GET',
+                sprintf('%s/%s', $this->config->get('url'),'resources/image'),
                 [
-                    'multipart' => [
-                        [
-                            'name' => 'timestamp',
-                            'contents' => $timestamp,
-                        ],
-                        [
-                            'name' => 'signature',
-                            'contents' => $signature,
-                        ],
-                        [
-                            'name' => 'api_key',
-                            'contents' => $this->key,
-                        ],
-                        [
-                            'name' => 'file',
-                            'contents' => fopen($file->getRealPath(), 'r'),
-                            'filename' => $file->getClientOriginalName(),
-                        ],
+                    'verify' => $this->config->get('cacert.pem'),
+                    'auth' => [
+                        $this->config->get('key'),
+                        $this->config->get('secret')
                     ]
                 ]
-            )
-        ;
+            );
 
-        $result = json_decode((string) $response->getBody(), true);
+            $data = json_decode((string) $response->getBody(), true);
+
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new JsonParseException('', json_last_error());
+            }
+
+            $result = new Result(Result::SUCCESS_CODE, $data);
+
+        } catch (GuzzleException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        } catch (JsonParseException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return Result
+     */
+    public function getImage(string $id): Result
+    {
+        try {
+            $response = $this->client->request(
+                'GET',
+                'https://api.cloudinary.com/v1_1/mt-images/resources/image/upload/' . $id,
+                [
+                    'verify' => $this->config->get('cacert.pem'),
+                    'auth' => [
+                        $this->config->get('key'),
+                        $this->config->get('secret')
+                    ]
+                ]
+            );
+
+            $data = json_decode((string) $response->getBody(), true);
+
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new JsonParseException('', json_last_error());
+            }
+
+            $result = new Result(Result::SUCCESS_CODE, $data);
+
+        } catch (GuzzleException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        } catch (JsonParseException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        }
+
+        return $result;
+    }
+
+    public function upload(FileBag $fileBag): Result
+    {
+        $timestamp = time();
+        $signature = sha1('timestamp=' . $timestamp . $this->config->get('secret'));
+
+        try {
+            $file = $fileBag->get($this->config->get('uploaded_file_name'));
+
+            if (!is_a($file, File::class)) {
+                throw new UploadedFileNotFoundException();
+            }
+
+            $response =
+                $this->client->request(
+                    'POST',
+                    sprintf('%s/%s', $this->config->get('url'),'image/upload'),
+                    [
+                        'multipart' => [
+                            [
+                                'name' => 'timestamp',
+                                'contents' => $timestamp,
+                            ],
+                            [
+                                'name' => 'signature',
+                                'contents' => $signature,
+                            ],
+                            [
+                                'name' => 'api_key',
+                                'contents' => $this->config->get('key'),
+                            ],
+                            [
+                                'name' => 'file',
+                                'contents' => fopen($file->getRealPath(), 'r'),
+                                'filename' => $file->getClientOriginalName(),
+                            ],
+                        ]
+                    ]
+                )
+            ;
+
+            $data = json_decode((string) $response->getBody(), true);
+
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new JsonParseException('', json_last_error());
+            }
+
+            $result = new Result(Result::SUCCESS_CODE, $data);
+
+        } catch (GuzzleException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        } catch (JsonParseException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        } catch (UploadedFileNotFoundException $exception) {
+            $result = new Result(Result::ERROR_CODE);
+        }
 
         return $result;
     }

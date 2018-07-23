@@ -23,17 +23,15 @@ class VictorFileStorageExtension extends  Extension
         $loader->load('services.yml');
 
         $certsLocator = new FileLocator(__DIR__.'/../Resources/certs');
-        $r = $certsLocator->locate('cacert.pem');
-        $definition = $container->getDefinition('cloudinary_storage_service');
-        $guzzleClient = $container->getDefinition('guzzle.client');
+        $cacertPemPath = $certsLocator->locate('cacert.pem');
 
-        //$guzzleClient->replaceArgument('base_uri', $config['url']);
-        $definition->replaceArgument(0, $config['storage_name']);
-        $definition->replaceArgument(1, $config['key']);
-        $definition->replaceArgument(2, $config['secret']);
-        $definition->replaceArgument(3, $config['url']);
-        $definition->replaceArgument(4, $r);
-        $definition->replaceArgument(5, $guzzleClient);
+        $cloudinaryConfig = $container->getDefinition('cloudinary_storage_config');
+        $cloudinaryConfig->addMethodCall('set', ['storage_name', $config['storage_name']]);
+        $cloudinaryConfig->addMethodCall('set', ['key', $config['key']]);
+        $cloudinaryConfig->addMethodCall('set', ['secret', $config['secret']]);
+        $cloudinaryConfig->addMethodCall('set', ['url', $config['url'] . $config['storage_name']]);
+        $cloudinaryConfig->addMethodCall('set', ['cacert.pem', $cacertPemPath]);
+        $cloudinaryConfig->addMethodCall('set', ['uploaded_file_name', $config['uploaded_file_name']]);
     }
 
 

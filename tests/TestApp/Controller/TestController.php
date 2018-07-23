@@ -26,10 +26,10 @@ class TestController extends Controller
      */
     public function showAction(Request $request)
     {
-        $response = $this->get('cloudinary_storage_service')->get($request);
+        $result = $this->get('cloudinary_storage_service')->get($request);
 
         return $this->render('show.html.twig', array(
-            'items' => $response['resources'],
+            'items' => $result->getData()['resources'],
         ));
     }
 
@@ -39,10 +39,10 @@ class TestController extends Controller
      */
     public function showImageAction(Request $request, $id)
     {
-        $response = $this->get('cloudinary_storage_service')->getImage($id);
+        $result = $this->get('cloudinary_storage_service')->getImage($id);
 
         return $this->render('show_item.html.twig', array(
-            'item' => $response,
+            'item' => $result->getData(),
         ));
     }
 
@@ -52,7 +52,7 @@ class TestController extends Controller
      */
     public function uploadAction(Request $request)
     {
-        $this->get('cloudinary_storage_service')->upload($request);
+        $this->get('cloudinary_storage_service')->upload($request->files);
 
         return $this->redirectToRoute('show');
     }
