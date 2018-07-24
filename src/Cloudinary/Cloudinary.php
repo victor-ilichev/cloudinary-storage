@@ -60,12 +60,12 @@ class Cloudinary
                 throw new JsonParseException('', json_last_error());
             }
 
-            $result = new Result(Result::SUCCESS_CODE, $data);
+            $result = new Result(Result::SUCCESS_CODE, 'success', $data);
 
         } catch (GuzzleException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         } catch (JsonParseException $exception) {
-            $result = new Result(Result::ERROR_CODE);
+            $result = new Result(Result::ERROR_CODE, $exception->getMessage());
         }
 
         return $result;
@@ -97,7 +97,7 @@ class Cloudinary
                 throw new JsonParseException('', json_last_error());
             }
 
-            $result = new Result(Result::SUCCESS_CODE, $data);
+            $result = new Result(Result::SUCCESS_CODE, 'success', $data);
 
         } catch (GuzzleException $exception) {
             $result = new Result(Result::ERROR_CODE, $exception->getMessage());

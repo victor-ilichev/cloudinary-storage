@@ -8,5 +8,11 @@
     <h4>{{ item.resource_type }}</h4>
     <h4>{{ item.format }}</h4>
     <img src="{{ item.url }}">
-    <img src="{{ item.secure_url }}">
+    {% if item.derived is defined %}
+        <ul>
+        {% for croped in item.derived %}
+            <li><img src="{{ croped.secure_url }}" /></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </div>

@@ -28,9 +28,15 @@ class TestController extends Controller
     {
         $result = $this->get('cloudinary_storage_service')->get($request);
 
-        return $this->render('show.html.twig', array(
-            'items' => $result->getData()['resources'],
-        ));
+        if ($result->isSuccess()) {
+            return $this->render('show.html.twig', array(
+                'items' => $result->getData()['resources'],
+            ));
+        }
+
+        return $this->render('error.html.twig', [
+            'message' => $result->getMessage(),
+        ]);
     }
 
     /**
@@ -41,9 +47,15 @@ class TestController extends Controller
     {
         $result = $this->get('cloudinary_storage_service')->getImage($id);
 
-        return $this->render('show_item.html.twig', array(
-            'item' => $result->getData(),
-        ));
+        if ($result->isSuccess()) {
+            return $this->render('show_item.html.twig', array(
+                'item' => $result->getData(),
+            ));
+        }
+
+        return $this->render('error.html.twig', [
+            'message' => $result->getMessage(),
+        ]);
     }
 
     /**
