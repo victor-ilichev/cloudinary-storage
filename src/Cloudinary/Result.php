@@ -6,7 +6,7 @@
  * Time: 9:01
  */
 
-namespace Victor\FileStorageBundle\Cloudinary;
+namespace Victor\CloudinaryStorageBundle\Cloudinary;
 
 class Result
 {

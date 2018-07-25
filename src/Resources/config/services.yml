@@ -5,10 +5,10 @@ services:
         public: false
 
     cloudinary_storage_config:
-        class: Victor\FileStorageBundle\Cloudinary\Config
+        class: Victor\CloudinaryStorageBundle\Cloudinary\Config
 
     cloudinary_storage_service:
-        class: Victor\FileStorageBundle\Cloudinary\Cloudinary
+        class: Victor\CloudinaryStorageBundle\Cloudinary\Cloudinary
         arguments:
             - '@cloudinary_storage_config'
             - '@guzzle.client'
@@ -16,7 +16,7 @@ services:
             - { name: file_storage, alias: cloudinary_storage_service }
 
     cloudinary.cloudinary_form_extension:
-        class: Victor\FileStorageBundle\Form\CloudinaryFileExtension
+        class: Victor\CloudinaryStorageBundle\Form\CloudinaryFileExtension
         arguments:
             - "@cloudinary_storage_service"
             - "@cloudinary.uri_generator"
@@ -24,9 +24,9 @@ services:
             - { name: form.type_extension, alias: cloudinary_file_type, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
 
     cloudinary.uri_generator:
-        class: Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator
+        class: Victor\CloudinaryStorageBundle\Cloudinary\Transformation\UriGenerator
 
     cloudinary.scale_generator:
-        class: Victor\FileStorageBundle\Cloudinary\Transformation\ScaleGenerator
+        class: Victor\CloudinaryStorageBundle\Cloudinary\Transformation\ScaleGenerator
         tags:
             - { name: cloudinary.transformation_generator }

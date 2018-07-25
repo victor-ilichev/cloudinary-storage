@@ -6,7 +6,7 @@
  * Time: 12:41
  */
 
-namespace Victor\FileStorageBundle\DependencyInjection;
+namespace Victor\CloudinaryStorageBundle\DependencyInjection;
 
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

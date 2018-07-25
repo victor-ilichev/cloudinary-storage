@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\FileStorageBundle\TestApp;
+namespace Victor\CloudinaryStorageBundle\TestApp;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use FOS\JsRoutingBundle\FOSJsRoutingBundle;
@@ -15,7 +15,7 @@ use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Victor\FileStorageBundle\VictorFileStorageBundle;
+use Victor\CloudinaryStorageBundle\VictorCloudinaryStorageBundle;
 
 class AppKernel extends Kernel
 {
@@ -33,7 +33,7 @@ class AppKernel extends Kernel
             new SonataDoctrineORMAdminBundle(),
             new SonataAdminBundle(),
             new FOSJsRoutingBundle(),
-            new VictorFileStorageBundle(),
+            new VictorCloudinaryStorageBundle(),
         ];
     }
 

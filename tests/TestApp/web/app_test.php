@@ -25,7 +25,7 @@ $loader = require __DIR__ . '/../../autoload.php';
 
 Debug::enable();
 
-$kernel = new \Victor\FileStorageBundle\TestApp\AppKernel('test', true);
+$kernel = new \Victor\CloudinaryStorageBundle\TestApp\AppKernel('test', true);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

@@ -6,13 +6,13 @@
  * Time: 12:08
  */
 
-namespace Victor\FileStorageBundle\Form\Transformer;
+namespace Victor\CloudinaryStorageBundle\Form\Transformer;
 
-use Victor\FileStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\File;
-use Victor\FileStorageBundle\Cloudinary\Cloudinary;
+use Victor\CloudinaryStorageBundle\Cloudinary\Cloudinary;
 
 class CloudinaryViewTransformer implements DataTransformerInterface
 {

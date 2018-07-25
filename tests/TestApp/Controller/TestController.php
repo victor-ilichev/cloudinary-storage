@@ -7,7 +7,7 @@
  * Time: 13:14
  */
 
-namespace Victor\FileStorageBundle\TestApp\Controller;
+namespace Victor\CloudinaryStorageBundle\TestApp\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,12 +15,12 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Victor\FileStorageBundle\Model\CloudinaryData;
-use Victor\FileStorageBundle\TestApp\Entity\BlogPost;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\TestApp\Entity\BlogPost;
 
 /**
  * Class TestController
- * @package Victor\FileStorageBundle\TestApp\Controller
+ * @package Victor\CloudinaryStorageBundle\TestApp\Controller
  * @Route()
  */
 class TestController extends Controller

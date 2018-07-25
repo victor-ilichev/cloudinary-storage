@@ -6,7 +6,7 @@
  * Time: 8:47
  */
 
-namespace Victor\FileStorageBundle\Exception;
+namespace Victor\CloudinaryStorageBundle\Exception;
 
 use Throwable;
 

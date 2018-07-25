@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @package Victor\FileStorageBundle\Cloudinary
+ * @package Victor\CloudinaryStorageBundle\Cloudinary
  */
-namespace Victor\FileStorageBundle\Cloudinary;
+namespace Victor\CloudinaryStorageBundle\Cloudinary;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-use Victor\FileStorageBundle\Exception\JsonParseException;
-use Victor\FileStorageBundle\Exception\UploadedFileNotFoundException;
+use Victor\CloudinaryStorageBundle\Exception\JsonParseException;
+use Victor\CloudinaryStorageBundle\Exception\UploadedFileNotFoundException;
 
 /**
  * Class Cloudinary

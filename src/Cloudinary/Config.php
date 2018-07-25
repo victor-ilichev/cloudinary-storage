@@ -6,7 +6,7 @@
  * Time: 10:01
  */
 
-namespace Victor\FileStorageBundle\Cloudinary;
+namespace Victor\CloudinaryStorageBundle\Cloudinary;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 

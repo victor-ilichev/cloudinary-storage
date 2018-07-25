@@ -1,13 +1,13 @@
 <?php
 
-namespace Victor\FileStorageBundle\Form\Transformer;
+namespace Victor\CloudinaryStorageBundle\Form\Transformer;
 
-use Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator;
-use Victor\FileStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\Cloudinary\Transformation\UriGenerator;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Victor\FileStorageBundle\Cloudinary\Cloudinary;
+use Victor\CloudinaryStorageBundle\Cloudinary\Cloudinary;
 
 class CloudinaryModelTransformer implements DataTransformerInterface
 {

@@ -6,7 +6,7 @@
  * Time: 8:46
  */
 
-namespace Victor\FileStorageBundle\Exception;
+namespace Victor\CloudinaryStorageBundle\Exception;
 
 class FileStorageException extends \Exception
 {

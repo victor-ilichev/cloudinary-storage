@@ -6,7 +6,7 @@
  * Time: 15:21
  */
 
-namespace Victor\FileStorageBundle\Cloudinary\Transformation;
+namespace Victor\CloudinaryStorageBundle\Cloudinary\Transformation;
 
 interface Generator
 {

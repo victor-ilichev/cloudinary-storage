@@ -6,7 +6,7 @@
  * Time: 9:16
  */
 
-namespace Victor\FileStorageBundle\Exception;
+namespace Victor\CloudinaryStorageBundle\Exception;
 
 class UploadedFileNotFoundException extends FileStorageException
 {

@@ -6,7 +6,7 @@
  * Time: 11:27
  */
 
-namespace Victor\FileStorageBundle\TestApp\Admin;
+namespace Victor\CloudinaryStorageBundle\TestApp\Admin;
 
 use Pegas\EditorBundle\Testapp\Entity\Category;
 use Sonata\AdminBundle\Admin\Admin;

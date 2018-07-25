@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\FileStorageBundle\Model;
+namespace Victor\CloudinaryStorageBundle\Model;
 
 class CloudinaryData
 {

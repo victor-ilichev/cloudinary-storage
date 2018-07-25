@@ -6,10 +6,10 @@
  * Time: 11:03
  */
 
-namespace Victor\FileStorageBundle\TestApp\Entity;
+namespace Victor\CloudinaryStorageBundle\TestApp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Victor\FileStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
 
 /**
  * Class Category

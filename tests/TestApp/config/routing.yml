@@ -9,7 +9,7 @@ upload:
     defaults: { _controller: storage.test_controller:uploadAction }
 
 widget:
-    resource: '@VictorFileStorageBundle/Resources/config/routing.yml'
+    resource: '@VictorCloudinaryStorageBundle/Resources/config/routing.yml'
     prefix: /widget
 
 admin_area:

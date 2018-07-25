@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\FileStorageBundle\DependencyInjection\Compiler;
+namespace Victor\CloudinaryStorageBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

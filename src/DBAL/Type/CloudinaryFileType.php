@@ -1,9 +1,9 @@
 <?php
 
-namespace Victor\FileStorageBundle\DBAL\Type;
+namespace Victor\CloudinaryStorageBundle\DBAL\Type;
 
-use Victor\FileStorageBundle\Exception\FileStorageException;
-use Victor\FileStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\Exception\FileStorageException;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 

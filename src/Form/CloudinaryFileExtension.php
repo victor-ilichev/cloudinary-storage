@@ -1,11 +1,11 @@
 <?php
 
-namespace Victor\FileStorageBundle\Form;
+namespace Victor\CloudinaryStorageBundle\Form;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator;
-use Victor\FileStorageBundle\Model\CloudinaryData;
+use Victor\CloudinaryStorageBundle\Cloudinary\Transformation\UriGenerator;
+use Victor\CloudinaryStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,9 +13,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Victor\FileStorageBundle\Cloudinary\Cloudinary;
-use Victor\FileStorageBundle\Form\Transformer\CloudinaryModelTransformer;
-use Victor\FileStorageBundle\Form\Transformer\CloudinaryViewTransformer;
+use Victor\CloudinaryStorageBundle\Cloudinary\Cloudinary;
+use Victor\CloudinaryStorageBundle\Form\Transformer\CloudinaryModelTransformer;
+use Victor\CloudinaryStorageBundle\Form\Transformer\CloudinaryViewTransformer;
 
 class CloudinaryFileExtension extends AbstractTypeExtension
 {

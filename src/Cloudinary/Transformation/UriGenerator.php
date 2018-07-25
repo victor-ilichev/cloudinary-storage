@@ -6,7 +6,7 @@
  * Time: 14:58
  */
 
-namespace Victor\FileStorageBundle\Cloudinary\Transformation;
+namespace Victor\CloudinaryStorageBundle\Cloudinary\Transformation;
 
 
 class UriGenerator

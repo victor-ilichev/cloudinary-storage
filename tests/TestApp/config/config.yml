@@ -1,11 +1,11 @@
 services:
     storage.test_controller:
-        class: Victor\FileStorageBundle\TestApp\Controller\TestController
+        class: Victor\CloudinaryStorageBundle\TestApp\Controller\TestController
         calls:
             - ['setContainer', ["@service_container"]]
 
     admin.category:
-        class: Victor\FileStorageBundle\TestApp\Admin\BlogPostAdmin
+        class: Victor\CloudinaryStorageBundle\TestApp\Admin\BlogPostAdmin
         arguments: [~, Pegas\EditorBundle\Testapp\Entity\BlogPost, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: BlogPost }
@@ -93,6 +93,6 @@ cloudinary_storage:
 
 twig:
     form_themes:
-        - '@VictorFileStorage/form/fields.html.twig'
+        - '@VictorCloudinaryStorage/form/fields.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

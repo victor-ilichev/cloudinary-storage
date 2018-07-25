@@ -6,7 +6,7 @@
  * Time: 13:03
  */
 
-namespace Victor\FileStorageBundle\FileStorage;
+namespace Victor\CloudinaryStorageBundle\FileStorage;
 
 
 use Symfony\Component\HttpFoundation\Request;

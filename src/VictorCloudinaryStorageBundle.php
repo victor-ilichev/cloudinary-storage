@@ -1,13 +1,13 @@
 <?php
 
-namespace Victor\FileStorageBundle;
+namespace Victor\CloudinaryStorageBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Victor\FileStorageBundle\DependencyInjection\Compiler\StoragePass;
-use Victor\FileStorageBundle\DependencyInjection\VictorFileStorageExtension;
+use Victor\CloudinaryStorageBundle\DependencyInjection\Compiler\StoragePass;
+use Victor\CloudinaryStorageBundle\DependencyInjection\VictorFileStorageExtension;
 
-class VictorFileStorageBundle extends Bundle
+class VictorCloudinaryStorageBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
@@ -18,5 +18,4 @@ class VictorFileStorageBundle extends Bundle
     {
         return new VictorFileStorageExtension();
     }
-
 }

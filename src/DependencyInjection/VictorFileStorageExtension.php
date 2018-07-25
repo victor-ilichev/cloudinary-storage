@@ -6,7 +6,7 @@
  * Time: 18:24
  */
 
-namespace Victor\FileStorageBundle\DependencyInjection;
+namespace Victor\CloudinaryStorageBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;

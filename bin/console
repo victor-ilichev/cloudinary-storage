@@ -17,6 +17,6 @@ if ($debug) {
     Debug::enable(E_ALL & ~E_USER_DEPRECATED);
 }
 
-$kernel = new \Victor\FileStorageBundle\TestApp\AppKernel($env, $debug);
+$kernel = new \Victor\CloudinaryStorageBundle\TestApp\AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run();

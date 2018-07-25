@@ -6,7 +6,7 @@
  * Time: 15:22
  */
 
-namespace Victor\FileStorageBundle\Cloudinary\Transformation;
+namespace Victor\CloudinaryStorageBundle\Cloudinary\Transformation;
 
 class ScaleGenerator implements Generator
 {

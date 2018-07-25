@@ -6,7 +6,7 @@
  * Time: 13:02
  */
 
-namespace Victor\FileStorageBundle\FileStorage;
+namespace Victor\CloudinaryStorageBundle\FileStorage;
 
 use Cloudinary\Result;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
