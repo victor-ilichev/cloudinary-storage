@@ -5,7 +5,7 @@ namespace Victor\CloudinaryStorageBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Victor\CloudinaryStorageBundle\DependencyInjection\Compiler\StoragePass;
-use Victor\CloudinaryStorageBundle\DependencyInjection\VictorFileStorageExtension;
+use Victor\CloudinaryStorageBundle\DependencyInjection\VictorCloudinaryStorageExtension;
 
 class VictorCloudinaryStorageBundle extends Bundle
 {
@@ -16,6 +16,6 @@ class VictorCloudinaryStorageBundle extends Bundle
 
     public function getContainerExtension()
     {
-        return new VictorFileStorageExtension();
+        return new VictorCloudinaryStorageExtension();
     }
 }

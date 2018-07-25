@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Config\FileLocator;
 
-class VictorFileStorageExtension extends  Extension
+class VictorCloudinaryStorageExtension extends  Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
