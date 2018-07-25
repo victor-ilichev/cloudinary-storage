@@ -10,7 +10,7 @@ namespace Victor\FileStorageBundle\Exception;
 
 use Throwable;
 
-class JsonParseException extends FileStoragrException
+class JsonParseException extends FileStorageException
 {
     public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
     {

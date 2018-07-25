@@ -8,7 +8,7 @@
 
 namespace Victor\FileStorageBundle\Exception;
 
-class FileStoragrException extends \Exception
+class FileStorageException extends \Exception
 {
 
 }

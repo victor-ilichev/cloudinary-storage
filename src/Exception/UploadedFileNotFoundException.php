@@ -8,7 +8,7 @@
 
 namespace Victor\FileStorageBundle\Exception;
 
-class UploadedFileNotFoundException extends FileStoragrException
+class UploadedFileNotFoundException extends FileStorageException
 {
 
 }

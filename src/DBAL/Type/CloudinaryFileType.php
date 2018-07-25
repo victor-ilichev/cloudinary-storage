@@ -2,7 +2,7 @@
 
 namespace Victor\FileStorageBundle\DBAL\Type;
 
-use Victor\FileStorageBundle\Exception\FileStoragrException;
+use Victor\FileStorageBundle\Exception\FileStorageException;
 use Victor\FileStorageBundle\Model\CloudinaryData;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
@@ -34,11 +34,13 @@ class CloudinaryFileType extends Type
                         ->setId($cloudinaryData['public_id'])
                         ->setUrl($cloudinaryData['url'])
                 ;
+
+                return $cloudinaryData;
             }
 
-            throw new FileStoragrException('CloudinaryData does not recognized.');
+            throw new FileStorageException('CloudinaryData does not recognized.');
         } catch (\Exception $e) {
-            $message = $e->getMessage();
+            //$message = $e->getMessage();
             $cloudinaryData = new CloudinaryData();
         }
 
