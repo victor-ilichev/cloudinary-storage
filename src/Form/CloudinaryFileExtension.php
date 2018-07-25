@@ -2,6 +2,8 @@
 
 namespace Victor\FileStorageBundle\Form;
 
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator;
 use Victor\FileStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -56,6 +58,13 @@ class CloudinaryFileExtension extends AbstractTypeExtension
                 )
             )
             ->addViewTransformer(new CloudinaryViewTransformer($this->cloudinary))
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $formData = $event->getForm()->getData();
+
+                if (is_a($formData, CloudinaryData::class) && is_null($event->getData())) {
+                    $event->setData($formData);
+                }
+            })
         ;
     }
 

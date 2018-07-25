@@ -87,6 +87,10 @@ class CloudinaryModelTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
+        if (is_null($value) or is_a($value, CloudinaryData::class)) {
+            return $value;
+        }
+
         $cloudinaryData = new CloudinaryData();
 
         if (is_a($value, UploadedFile::class)) {
