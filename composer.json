@@ -8,8 +8,8 @@
       "email": "victorlange84@gmail.com"
     }
   ],
-  "autoload": {"psr-4": {"Victor\\FileStorageBundle\\": ["src"]}},
-  "autoload-dev": {"psr-4": {"Victor\\FileStorageBundle\\": "tests"}},
+  "autoload": {"psr-4": {"Victor\\CloudinaryStorageBundle\\": ["src"]}},
+  "autoload-dev": {"psr-4": {"Victor\\CloudinaryStorageBundle\\": "tests"}},
   "config": {
     "bin-dir": "bin/"
   },
