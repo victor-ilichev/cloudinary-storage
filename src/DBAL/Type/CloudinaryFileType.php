@@ -11,7 +11,7 @@ class CloudinaryFileType extends Type
 {
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        // TODO: Implement getSQLDeclaration() method.
+        return 'TEXT';
     }
 
     public function getName()
