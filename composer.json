@@ -1,5 +1,5 @@
 {
-  "name": "victor/file-storage-bundle",
+  "name": "victor/cloudinary-storage-bundle",
   "type": "symfony-bundle",
   "description": "file storage bundle",
   "authors": [
