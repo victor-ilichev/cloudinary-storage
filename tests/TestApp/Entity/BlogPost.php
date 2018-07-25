@@ -6,10 +6,10 @@
  * Time: 11:03
  */
 
-namespace Pegas\EditorBundle\Testapp\Entity;
+namespace Victor\FileStorageBundle\TestApp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Pegas\EditorBundle\Model\EditorData;
+use Victor\FileStorageBundle\Model\CloudinaryData;
 
 /**
  * Class Category
@@ -32,25 +32,15 @@ class BlogPost
     protected $title;
 
     /**
-     * @ORM\Column(type="editor_data", length=255, name="`description`")
-     * @var EditorData
+     * @ORM\Column(type="text", length=255, name="`description`")
      */
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="blogPosts")
+     * @ORM\Column(type="cloudinary_data", length=1024, name="`image`")
+     * @var CloudinaryData
      */
-    private $category;
-
-    public function setCategory(Category $category)
-    {
-        $this->category = $category;
-    }
-
-    public function getCategory()
-    {
-        return $this->category;
-    }
+    protected $image;
 
     /**
      * @return mixed
@@ -109,4 +99,19 @@ class BlogPost
         return $this;
     }
 
+    /**
+     * @return CloudinaryData
+     */
+    public function getImage(): CloudinaryData
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param CloudinaryData $image
+     */
+    public function setImage(CloudinaryData $image): void
+    {
+        $this->image = $image;
+    }
 }

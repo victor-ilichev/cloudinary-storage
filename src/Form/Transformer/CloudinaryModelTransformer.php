@@ -2,6 +2,7 @@
 
 namespace Victor\FileStorageBundle\Form\Transformer;
 
+use Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator;
 use Victor\FileStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -15,10 +16,17 @@ class CloudinaryModelTransformer implements DataTransformerInterface
      * @var Cloudinary
      */
     private $cloudinary;
+    /**
+     * @var UriGenerator
+     */
+    private $uriGenerator;
+    private $transformations;
 
-    public function __construct(Cloudinary $cloudinary)
+    public function __construct(Cloudinary $cloudinary, UriGenerator $uriGenerator, array $transformations = [])
     {
         $this->cloudinary = $cloudinary;
+        $this->uriGenerator = $uriGenerator;
+        $this->transformations = $transformations;
     }
 
     /**
@@ -85,9 +93,14 @@ class CloudinaryModelTransformer implements DataTransformerInterface
             $result = $this->cloudinary->upload($value);
 
             if ($result->isSuccess()) {
+                $url = $this->uriGenerator->generateUrlByParams(
+                    $result->getData()['secure_url'],
+                    $this->transformations
+                );
+
                 $cloudinaryData
                     ->setId($result->getData()['public_id'])
-                    ->setUrl($result->getData()['secure_url'])
+                    ->setUrl($url)
                 ;
             }
         }

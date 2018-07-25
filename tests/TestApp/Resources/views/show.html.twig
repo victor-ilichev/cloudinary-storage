@@ -6,10 +6,10 @@
     </div>
 </div>
 <div>
-    <form enctype="multipart/form-data" method="post" action="{{ path('upload') }}">
-        <input type="file" name="picture" />
-        <input type="submit" name="submit" value="submit">
-    </form>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 </div>
 <style>
     ul > li > a > img {

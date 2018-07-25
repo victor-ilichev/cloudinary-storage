@@ -89,12 +89,10 @@ cloudinary_storage:
     key: 757365593198676
     secret: 5YU0qRukFcoCW8qeWNfPTHpWf54
     url:  https://api.cloudinary.com/v1_1/
-    uploaded_file_name: upload
+    uploaded_file_name: picture
 
 twig:
     form_themes:
-        - '@PegasEditor/form/form_bootstrap_layout.html.twig'
-        - '@SonataFormatter/Form/formatter.html.twig'
-        - 'form/fields.html.twig'
+        - '@VictorFileStorage/form/fields.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

@@ -19,5 +19,14 @@ services:
         class: Victor\FileStorageBundle\Form\CloudinaryFileExtension
         arguments:
             - "@cloudinary_storage_service"
+            - "@cloudinary.uri_generator"
         tags:
             - { name: form.type_extension, alias: cloudinary_file_type, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+
+    cloudinary.uri_generator:
+        class: Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator
+
+    cloudinary.scale_generator:
+        class: Victor\FileStorageBundle\Cloudinary\Transformation\ScaleGenerator
+        tags:
+            - { name: cloudinary.transformation_generator }

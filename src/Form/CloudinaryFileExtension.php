@@ -2,6 +2,7 @@
 
 namespace Victor\FileStorageBundle\Form;
 
+use Victor\FileStorageBundle\Cloudinary\Transformation\UriGenerator;
 use Victor\FileStorageBundle\Model\CloudinaryData;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -20,10 +21,15 @@ class CloudinaryFileExtension extends AbstractTypeExtension
      * @var Cloudinary
      */
     private $cloudinary;
+    /**
+     * @var UriGenerator
+     */
+    private $uriGenerator;
 
-    public function __construct(Cloudinary $cloudinary)
+    public function __construct(Cloudinary $cloudinary, UriGenerator $uriGenerator)
     {
         $this->cloudinary = $cloudinary;
+        $this->uriGenerator = $uriGenerator;
     }
 
     public function getExtendedType()
@@ -34,14 +40,21 @@ class CloudinaryFileExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         // makes it legal for FileType fields to have an image_property option
-        $resolver->setDefined(array('image_property'));
+        $resolver->setDefined(array('image_property', 'transformations'));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+
         $builder
-            ->addModelTransformer(new CloudinaryModelTransformer($this->cloudinary))
+            ->addModelTransformer(
+                new CloudinaryModelTransformer(
+                    $this->cloudinary,
+                    $this->uriGenerator,
+                    $options['transformations']
+                )
+            )
             ->addViewTransformer(new CloudinaryViewTransformer($this->cloudinary))
         ;
     }
