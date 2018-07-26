@@ -19,37 +19,35 @@ class CloudinaryFileType extends Type
         return self::class;
     }
 
-    public function convertToPHPValue($cloudinaryData, AbstractPlatform $platform)
+    public function convertToPHPValue($data, AbstractPlatform $platform)
     {
         try {
-            $cloudinaryData = unserialize($cloudinaryData);
+            $decodedData = json_decode($data);
 
-            if ($cloudinaryData instanceof CloudinaryData) {
-                return $cloudinaryData;
-            }
+            if (JSON_ERROR_NONE === json_last_error()) {
+                $cloudinaryData = new CloudinaryData();
 
-            if (is_array($cloudinaryData)) {
-                $cloudinaryData =
-                    (new CloudinaryData())
-                        ->setId($cloudinaryData['public_id'])
-                        ->setUrl($cloudinaryData['url'])
-                ;
+                if (isset($decodedData['public_id'])) {
+                    $cloudinaryData->setId($decodedData['public_id']);
+                }
+
+                if (isset($decodedData['url'])) {
+                    $cloudinaryData->setUrl($decodedData['url']);
+                }
 
                 return $cloudinaryData;
             }
 
             throw new FileStorageException('CloudinaryData does not recognized.');
         } catch (\Exception $e) {
-            //$message = $e->getMessage();
             $cloudinaryData = new CloudinaryData();
         }
-
 
         return $cloudinaryData;
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return serialize($value);
+        return json_encode($value);
     }
 }
