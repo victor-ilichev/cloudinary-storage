@@ -22,7 +22,7 @@ class CloudinaryFileType extends Type
     public function convertToPHPValue($data, AbstractPlatform $platform)
     {
         try {
-            $decodedData = json_decode($data);
+            $decodedData = json_decode($data, true);
 
             if (JSON_ERROR_NONE === json_last_error()) {
                 $cloudinaryData = new CloudinaryData();
