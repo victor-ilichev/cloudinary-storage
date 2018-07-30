@@ -9,14 +9,15 @@ use Doctrine\DBAL\Types\Type;
 
 class CloudinaryFileType extends Type
 {
+
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'TEXT';
+        return "TEXT";
     }
 
     public function getName()
     {
-        return self::class;
+        return 'cloudinary_data';
     }
 
     public function convertToPHPValue($data, AbstractPlatform $platform)
