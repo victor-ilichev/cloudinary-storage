@@ -14,6 +14,7 @@ class ScaleGenerator implements Generator
 
     private $map = [
         'height' => 'h',
+        'width' => 'w',
     ];
 
     public function generate(array $params): string
